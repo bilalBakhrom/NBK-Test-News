@@ -47,7 +47,7 @@ extension RequestConvertible {
     public func asQueryURL() throws -> URL {
         let endPointString = environment.rawValue + path
         var component = URLComponents(string: endPointString)
-        component?.queryItems = (parameters as? [String: String])?.queryItems
+        component?.queryItems = parameters?.queryItems
         
         if let url = component?.url {
             return url
@@ -65,7 +65,8 @@ extension Headers {
     public static var defaultHeaders: Headers {
         return [
             "Content-Type" : "application/json",
-            "Connection" : "keep-alive"
+            "Connection" : "keep-alive",
+            "x-api-key" : Shared.apiKey
         ]
     }
 }

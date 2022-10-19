@@ -8,8 +8,14 @@
 import Foundation
 
 public struct RMSource: Encodable {
-    private let apiKey = Shared.apiKey
+    internal let apiKey = Shared.apiKey
     public var country: String?
     public var category: String?
     public var language: String?
+    
+    public init(country: String? = nil, category: String? = nil, language: String? = nil) {
+        self.country = country
+        self.category = category
+        self.language = language
+    }
 }
