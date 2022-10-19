@@ -8,11 +8,11 @@
 import Foundation
 
 public struct NewsSource: Codable {
-    public var id: String
-    public var name: String
-    public var description: String
-    public var url: String
-    public var category: String
-    public var language: String
-    public var country: String
+    public var id: String?
+    public var name: String?
+    public var description: String?
+    public var url: String?
+    public var category: String?
+    public var language: String?
+    public var country: String?
 }
