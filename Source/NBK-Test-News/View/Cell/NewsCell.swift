@@ -7,27 +7,48 @@
 
 import UIKit
 import NewsNetwork
+import NukeUI
 
 fileprivate struct Constants {
     let hPadding: CGFloat = 16
     let vPadding: CGFloat = 6
     let spacing: CGFloat = 10
-    let imageHeight: CGFloat = UIScreen.main.bounds.width * 0.65
+    let cornerRadius: CGFloat = 10
 }
 
 public class NewsCell: NiblessTableViewCell {
     private let const = Constants()
     
+    private lazy var inDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return dateFormatter
+    }()
+    
+    private lazy var outDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        return dateFormatter
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .theme.primaryBackground
+        view.layer.cornerRadius = const.cornerRadius
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
-    private lazy var articleImageView: UIImageView = {
-        let view = UIImageView()
+    private lazy var articleImageView: LazyImageView = {
+        let view = LazyImageView()
+        view.placeholderView = UIActivityIndicatorView()
+        view.layer.cornerRadius = const.cornerRadius
+        view.contentMode = .scaleToFill
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -35,14 +56,27 @@ public class NewsCell: NiblessTableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
+        view.textColor = UIColor.white
+        view.numberOfLines = 3
+        view.font = .systemFont(ofSize: 15, weight: .semibold)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let view = UILabel()
-        view.numberOfLines = 2
+        view.numberOfLines = 1
+        view.textColor = UIColor.white.withAlphaComponent(0.7)
+        view.font = .systemFont(ofSize: 15, weight: .semibold)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private lazy var gradientView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.55)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -58,8 +92,19 @@ public class NewsCell: NiblessTableViewCell {
     }()
     
     public func configure(with article: Article) {
+        articleImageView.url = URL(string: article.urlToImage ?? "")
         titleLabel.text = article.title
-        descriptionLabel.text = article.description
+        dateLabel.text = format(date: article.publishedAt)
+    }
+    
+    private func format(date string: String?) -> String {
+        let date = inDateFormatter.date(from: string ?? "")
+        
+        if let date {
+            return outDateFormatter.string(from: date)
+        } else {
+            return ""
+        }
     }
 }
 
@@ -68,15 +113,17 @@ extension NewsCell {
     public override func constructHierarchy() {
         contentView.addSubview(containerView)
         containerView.addSubview(articleImageView)
+        containerView.addSubview(gradientView)
         containerView.addSubview(vStack)
         vStack.addArrangedSubview(titleLabel)
-        vStack.addArrangedSubview(descriptionLabel)
+        vStack.addArrangedSubview(dateLabel)
     }
     
     public override func activateConstraints() {
         activateContainerViewConstraints()
         activateImageViewConstraints()
         activateVStackConstraints()
+        activateGradientViewConstraints()
     }
     
     private func activateContainerViewConstraints() {
@@ -93,16 +140,24 @@ extension NewsCell {
             articleImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
             articleImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             articleImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            articleImageView.heightAnchor.constraint(equalToConstant: const.imageHeight)
+            articleImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
     }
     
     private func activateVStackConstraints() {
         NSLayoutConstraint.activate([
-            vStack.topAnchor.constraint(equalTo: articleImageView.bottomAnchor),
-            vStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            vStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            vStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            vStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: const.hPadding),
+            vStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -const.hPadding),
+            vStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -const.vPadding),
+        ])
+    }
+    
+    private func activateGradientViewConstraints() {
+        NSLayoutConstraint.activate([
+            gradientView.topAnchor.constraint(equalTo: vStack.topAnchor, constant: -const.vPadding),
+            gradientView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+private let palette = ThemePalette()
+
 extension UIColor {
-    
+    public static var theme: ThemePalette { palette }
 }

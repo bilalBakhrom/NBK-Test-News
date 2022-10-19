@@ -13,9 +13,11 @@ public class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.register(NewsCell.self)
+            tableView.showsVerticalScrollIndicator = false
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.backgroundColor = .yellow
+            tableView.backgroundColor = .clear
+            tableView.separatorStyle = .none
         }
     }
 
@@ -23,6 +25,9 @@ public class HomeViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Today"        
+        view.backgroundColor = .systemGroupedBackground
         
         viewModel.observeData { [weak self] didFail in
             guard let self else { return }
@@ -55,7 +60,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return UIScreen.main.bounds.width * 0.65
     }
 }
 

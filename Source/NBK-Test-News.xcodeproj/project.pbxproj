@@ -25,6 +25,11 @@
 		D593297029001A6700A1379F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593296F29001A6700A1379F /* HomeViewModel.swift */; };
 		D593297329001C3600A1379F /* Color+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593297229001C3600A1379F /* Color+Addition.swift */; };
 		D59329752900221900A1379F /* List+Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59329742900221900A1379F /* List+Deque.swift */; };
+		D59329772900291500A1379F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59329762900291500A1379F /* Colors.xcassets */; };
+		D59329792900297A00A1379F /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59329782900297A00A1379F /* ThemePalette.swift */; };
+		D593297C290030AA00A1379F /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = D593297B290030AA00A1379F /* Nuke */; };
+		D593297E290030AA00A1379F /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = D593297D290030AA00A1379F /* NukeExtensions */; };
+		D5932980290030AA00A1379F /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = D593297F290030AA00A1379F /* NukeUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,8 @@
 		D593296F29001A6700A1379F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D593297229001C3600A1379F /* Color+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Addition.swift"; sourceTree = "<group>"; };
 		D59329742900221900A1379F /* List+Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Deque.swift"; sourceTree = "<group>"; };
+		D59329762900291500A1379F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D59329782900297A00A1379F /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +82,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D593295B28FFFF0C00A1379F /* NewsNetwork in Frameworks */,
+				D593297C290030AA00A1379F /* Nuke in Frameworks */,
+				D593297E290030AA00A1379F /* NukeExtensions in Frameworks */,
+				D5932980290030AA00A1379F /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				D593293028FFD4D600A1379F /* Assets.xcassets */,
+				D59329762900291500A1379F /* Colors.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				D593297229001C3600A1379F /* Color+Addition.swift */,
+				D59329782900297A00A1379F /* ThemePalette.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -269,6 +281,9 @@
 			name = "NBK-Test-News";
 			packageProductDependencies = (
 				D593295A28FFFF0C00A1379F /* NewsNetwork */,
+				D593297B290030AA00A1379F /* Nuke */,
+				D593297D290030AA00A1379F /* NukeExtensions */,
+				D593297F290030AA00A1379F /* NukeUI */,
 			);
 			productName = "NBK-Test-News";
 			productReference = D593292428FFD4D300A1379F /* NBK-Test-News.app */;
@@ -342,6 +357,9 @@
 				Base,
 			);
 			mainGroup = D593291B28FFD4D300A1379F;
+			packageReferences = (
+				D593297A290030AA00A1379F /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = D593292528FFD4D300A1379F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D593293428FFD4D600A1379F /* LaunchScreen.storyboard in Resources */,
+				D59329772900291500A1379F /* Colors.xcassets in Resources */,
 				D593293128FFD4D600A1379F /* Assets.xcassets in Resources */,
 				D593292F28FFD4D300A1379F /* Home.storyboard in Resources */,
 			);
@@ -392,6 +411,7 @@
 				D593296E290019FF00A1379F /* List+Register.swift in Sources */,
 				D593292828FFD4D300A1379F /* AppDelegate.swift in Sources */,
 				D593296C290019B100A1379F /* View+Layout.swift in Sources */,
+				D59329792900297A00A1379F /* ThemePalette.swift in Sources */,
 				D593292A28FFD4D300A1379F /* SceneDelegate.swift in Sources */,
 				D593296A290018DE00A1379F /* NiblessTableViewCell.swift in Sources */,
 				D59329682900186800A1379F /* NewsCell.swift in Sources */,
@@ -750,10 +770,36 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		D593297A290030AA00A1379F /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		D593295A28FFFF0C00A1379F /* NewsNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsNetwork;
+		};
+		D593297B290030AA00A1379F /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D593297A290030AA00A1379F /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		D593297D290030AA00A1379F /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D593297A290030AA00A1379F /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		D593297F290030AA00A1379F /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D593297A290030AA00A1379F /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
