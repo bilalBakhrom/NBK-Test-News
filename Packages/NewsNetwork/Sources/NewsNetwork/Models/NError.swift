@@ -11,4 +11,5 @@ public enum NError: Error {
     case createURLFailed(reason: String)
     case responseFailed(reason: URLResponse)
     case unexpectedStatusCode(code: Int)
+    case technicIssue
 }
