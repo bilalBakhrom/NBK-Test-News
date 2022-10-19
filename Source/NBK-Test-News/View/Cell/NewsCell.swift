@@ -68,7 +68,19 @@ public class NewsCell: NiblessTableViewCell {
         let view = UILabel()
         view.numberOfLines = 1
         view.textColor = UIColor.white.withAlphaComponent(0.7)
-        view.font = .systemFont(ofSize: 15, weight: .semibold)
+        view.font = .systemFont(ofSize: 14, weight: .medium)
+        view.textAlignment = .right
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private lazy var authorLabel: UILabel = {
+        let view = UILabel()
+        view.numberOfLines = 1
+        view.textColor = UIColor.white.withAlphaComponent(0.85)
+        view.font = .systemFont(ofSize: 14, weight: .medium)
+        view.textAlignment = .right
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -76,7 +88,7 @@ public class NewsCell: NiblessTableViewCell {
     
     private lazy var gradientView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.55)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -91,9 +103,19 @@ public class NewsCell: NiblessTableViewCell {
         return view
     }()
     
+    private lazy var vStackInfo: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = const.spacing / 2
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     public func configure(with article: Article) {
         articleImageView.url = URL(string: article.urlToImage ?? "")
         titleLabel.text = article.title
+        authorLabel.text = article.author
         dateLabel.text = format(date: article.publishedAt)
     }
     
@@ -116,7 +138,9 @@ extension NewsCell {
         containerView.addSubview(gradientView)
         containerView.addSubview(vStack)
         vStack.addArrangedSubview(titleLabel)
-        vStack.addArrangedSubview(dateLabel)
+        vStack.addArrangedSubview(vStackInfo)
+        vStackInfo.addArrangedSubview(dateLabel)
+        vStackInfo.addArrangedSubview(authorLabel)
     }
     
     public override func activateConstraints() {
