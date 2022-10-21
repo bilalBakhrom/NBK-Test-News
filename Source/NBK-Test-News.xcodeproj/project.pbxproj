@@ -39,6 +39,7 @@
 		D5D2EC822902B1100094D575 /* ArticleListManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC812902B1100094D575 /* ArticleListManagerTests.swift */; };
 		D5D2EC852902B5E80094D575 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC842902B5E80094D575 /* MockURLProtocol.swift */; };
 		D5D2EC882902C1CD0094D575 /* ArticleListHolder+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC872902C1CD0094D575 /* ArticleListHolder+Responder.swift */; };
+		D5D2EC8A2902C7930094D575 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		D5D2EC812902B1100094D575 /* ArticleListManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListManagerTests.swift; sourceTree = "<group>"; };
 		D5D2EC842902B5E80094D575 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		D5D2EC872902C1CD0094D575 /* ArticleListHolder+Responder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArticleListHolder+Responder.swift"; sourceTree = "<group>"; };
+		D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				D5D2EC862902C1BC0094D575 /* Extensions */,
 				D5D2EC832902B5D70094D575 /* Mocks */,
 				D5D2EC812902B1100094D575 /* ArticleListManagerTests.swift */,
+				D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */,
 			);
 			path = "NBK-Test-NewsTests";
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				D5D2EC882902C1CD0094D575 /* ArticleListHolder+Responder.swift in Sources */,
 				D5D2EC852902B5E80094D575 /* MockURLProtocol.swift in Sources */,
 				D5D2EC822902B1100094D575 /* ArticleListManagerTests.swift in Sources */,
+				D5D2EC8A2902C7930094D575 /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

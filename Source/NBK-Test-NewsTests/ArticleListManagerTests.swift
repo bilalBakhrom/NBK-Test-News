@@ -10,33 +10,45 @@ import XCTest
 @testable import NewsNetwork
 
 final class ArticleListManagerTests: XCTestCase {
-    func testSuccessfullyFetchingArticles() throws {
-        let mockSession = URLSession(mockResponder: ArticleListHolder.MockDataURLResponder.self)
-        let articles = ArticleListManager(service: NewsService(session: mockSession))
-        let articleLoadExpectation = expectation(description: "Received response")
+    private var mockSession: URLSession!
+    private var sut: ArticleListManager!
+    
+    override func setUp() {
+        super.setUp()
         
-        articles.load { error in
+        mockSession = URLSession(mockResponder: ArticleListHolder.MockDataURLResponder.self)
+        sut = ArticleListManager(service: NewsService(session: mockSession))
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        mockSession = nil
+        sut = nil
+    }
+    
+    func testSuccessfullyFetchingArticles() throws {
+        let testExpectation = expectation(description: "Received response")
+        
+        sut.load { error in
             XCTAssertNil(error)
-            XCTAssertEqual(2, articles.list.count)
-            articleLoadExpectation.fulfill()
+            XCTAssertEqual(2, self.sut.list.count)
+            testExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 3.0)
     }
     
     func testFetchingMoreArticlesWhileScrolling() throws {
-        let mockSession = URLSession(mockResponder: ArticleListHolder.MockDataURLResponder.self)
-        let articles = ArticleListManager(service: NewsService(session: mockSession))
-        let articleLoadExpectation = expectation(description: "Received response")
+        let textExpectation = expectation(description: "Received response")
         
-        articles.load { error in
+        sut.load { error in
             XCTAssertNil(error)
-            XCTAssertEqual(2, articles.list.count)
+            XCTAssertEqual(2, self.sut.list.count)
             
-            articles.load { error in
+            self.sut.load { error in
                 XCTAssertNil(error)
-                XCTAssertEqual(4, articles.list.count)
-                articleLoadExpectation.fulfill()
+                XCTAssertEqual(4, self.sut.list.count)
+                textExpectation.fulfill()
             }
         }
         
@@ -44,13 +56,13 @@ final class ArticleListManagerTests: XCTestCase {
     }
     
     func testFailingWhenEncounterError() throws {
-        let mockSession = URLSession(mockResponder: MockErrorURLResponder.self)
-        let articles = ArticleListManager(service: NewsService(session: mockSession))
-        let articleLoadExpectation = expectation(description: "Received response")
+        let errorMockSession = URLSession(mockResponder: MockErrorURLResponder.self)
+        let manager = ArticleListManager(service: NewsService(session: errorMockSession))
+        let testExpectation = expectation(description: "Received response")
         
-        articles.load { error in
+        manager.load { error in
             XCTAssertNotNil(error)
-            articleLoadExpectation.fulfill()
+            testExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 3.0)

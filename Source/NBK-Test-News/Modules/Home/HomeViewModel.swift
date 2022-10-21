@@ -11,9 +11,13 @@ import NewsNetwork
 import SwiftUI
 
 public final class HomeViewModel {
-    @ObservedObject public var articles = ArticleListManager()
+    @ObservedObject public var articles: ArticleListManager
     public var list: [Article] = []
     private var subscriptions: Set<AnyCancellable> = []
+    
+    public init(articles: ArticleListManager = ArticleListManager()) {
+        self.articles = articles
+    }
             
     public func fetch() {
         articles.load()
