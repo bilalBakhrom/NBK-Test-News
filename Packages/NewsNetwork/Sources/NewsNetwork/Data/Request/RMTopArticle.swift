@@ -15,7 +15,7 @@ public struct RMTopArticle: Encodable {
     public var q: String?
     public var language: String
     public var pageSize: Int
-    public var page: Int?
+    public var page: Int
     
     public init(
         country: String? = nil,
@@ -23,8 +23,8 @@ public struct RMTopArticle: Encodable {
         sources: String? = nil,
         q: String? = nil,
         language: String = "en",
-        pageSize: Int = 20,
-        page: Int? = nil
+        pageSize: Int = 5,
+        page: Int = 1
     ) {
         self.country = country
         self.category = category

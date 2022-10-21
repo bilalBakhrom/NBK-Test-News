@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 public class HomeViewController: UIViewController {
     public let viewModel = HomeViewModel()
@@ -32,6 +33,10 @@ public class HomeViewController: UIViewController {
         viewModel.observeData { [weak self] didFail in
             guard let self else { return }
             didFail ? self.showError() : self.tableView.reloadData()
+        } didUpdateItemBlock: { [weak self] start, end in
+            guard let self else { return }
+            let rows = (start...end).map { IndexPath(row: $0, section: 0) }
+            self.tableView.insertRows(at: rows, with: .bottom)
         }
         
         viewModel.observeLoader { [weak self] isLoading in
@@ -56,6 +61,10 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(NewsCell.self, for: indexPath)
         cell.configure(with: viewModel.list[indexPath.row])
         
+        if indexPath.row == viewModel.list.count - 1 {
+            viewModel.loadMore()
+        }
+        
         return cell
     }
     
@@ -66,6 +75,8 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let detailsView = DetailsView(article: viewModel.$articles.list[indexPath.row])
+        let hostingController = UIHostingController(rootView: detailsView)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 }

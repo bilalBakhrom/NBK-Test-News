@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 import NewsNetwork
+import SwiftUI
 
 public final class HomeViewModel {
-    public let articles = Articles()
+    @ObservedObject public var articles = Articles()
     public var list: [Article] = []
     private var subscriptions: Set<AnyCancellable> = []
             
@@ -18,12 +19,25 @@ public final class HomeViewModel {
         articles.fetchFirstPage()
     }
     
-    public func observeData(using block: @escaping (_ didFail: Bool) -> Void) {
+    public func loadMore() {
+        articles.loadMore()
+    }
+    
+    public func observeData(using block: @escaping (_ didFail: Bool) -> Void, didUpdateItemBlock: ((_ start: Int, _ end: Int) -> Void)? = nil) {
         articles
             .$list
             .sink { [weak self] list in
-                self?.list = list
-                block(false)
+                guard let self else { return }
+                
+                let start = self.list.count
+                let end = list.count - 1
+                self.list = list
+                
+                if self.list.isEmpty {
+                    block(false)
+                } else {
+                    didUpdateItemBlock?(start, end)
+                }
             }
             .store(in: &subscriptions)
         

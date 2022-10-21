@@ -5,10 +5,15 @@
 //  Created by Bilal Bakhrom on 19/10/2022.
 //
 
-import UIKit
+import SwiftUI
 
-private let palette = ThemePalette()
+private let uiKitPalette = ThemePaletteForUIColor()
+private let swiftUIPalette = ThemePaletteForColor()
 
 extension UIColor {
-    public static var theme: ThemePalette { palette }
+    public static var theme: ThemePaletteForUIColor { uiKitPalette }
+}
+
+extension Color {
+    public static var theme: ThemePaletteForColor { swiftUIPalette }
 }

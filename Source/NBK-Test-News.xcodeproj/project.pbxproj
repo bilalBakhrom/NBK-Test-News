@@ -26,10 +26,17 @@
 		D593297329001C3600A1379F /* Color+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593297229001C3600A1379F /* Color+Addition.swift */; };
 		D59329752900221900A1379F /* List+Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59329742900221900A1379F /* List+Deque.swift */; };
 		D59329772900291500A1379F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59329762900291500A1379F /* Colors.xcassets */; };
-		D59329792900297A00A1379F /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59329782900297A00A1379F /* ThemePalette.swift */; };
+		D59329792900297A00A1379F /* ThemePaletteForUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59329782900297A00A1379F /* ThemePaletteForUIColor.swift */; };
 		D593297C290030AA00A1379F /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = D593297B290030AA00A1379F /* Nuke */; };
 		D593297E290030AA00A1379F /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = D593297D290030AA00A1379F /* NukeExtensions */; };
 		D5932980290030AA00A1379F /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = D593297F290030AA00A1379F /* NukeUI */; };
+		D5932985290169CC00A1379F /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5932984290169CC00A1379F /* DetailsView.swift */; };
+		D593298729016CEF00A1379F /* ImageTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593298629016CEF00A1379F /* ImageTaskManager.swift */; };
+		D5932989290175E000A1379F /* Article+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5932988290175E000A1379F /* Article+Date.swift */; };
+		D593298B2901787500A1379F /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593298A2901787500A1379F /* BottomSheetView.swift */; };
+		D5D2EC77290281BD0094D575 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */; };
+		D5D2EC7E29029A8A0094D575 /* DetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */; };
+		D5D2EC8029029AA50094D575 /* DetailsBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +80,14 @@
 		D593297229001C3600A1379F /* Color+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Addition.swift"; sourceTree = "<group>"; };
 		D59329742900221900A1379F /* List+Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Deque.swift"; sourceTree = "<group>"; };
 		D59329762900291500A1379F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		D59329782900297A00A1379F /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
+		D59329782900297A00A1379F /* ThemePaletteForUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePaletteForUIColor.swift; sourceTree = "<group>"; };
+		D5932984290169CC00A1379F /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		D593298629016CEF00A1379F /* ImageTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTaskManager.swift; sourceTree = "<group>"; };
+		D5932988290175E000A1379F /* Article+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Date.swift"; sourceTree = "<group>"; };
+		D593298A2901787500A1379F /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsContentView.swift; sourceTree = "<group>"; };
+		D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsBackgroundImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +147,9 @@
 				D593297129001C2200A1379F /* Core */,
 				D59329652900184700A1379F /* View */,
 				D593295E290009E100A1379F /* Models */,
-				D593295D290009DC00A1379F /* Extensions */,
+				D5D2EC7A290282640094D575 /* Manager */,
 				D593295C290009D900A1379F /* Modules */,
+				D593295D290009DC00A1379F /* Extensions */,
 				D593296129000A0D00A1379F /* Resource */,
 				D593293528FFD4D600A1379F /* Info.plist */,
 			);
@@ -179,6 +194,7 @@
 				D593295F290009E700A1379F /* Delegate */,
 				D593296229000A1E00A1379F /* Launch */,
 				D593296029000A0300A1379F /* Home */,
+				D5932981290169AD00A1379F /* Details */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -189,6 +205,7 @@
 				D593296B290019B100A1379F /* View+Layout.swift */,
 				D593296D290019FF00A1379F /* List+Register.swift */,
 				D59329742900221900A1379F /* List+Deque.swift */,
+				D5932988290175E000A1379F /* Article+Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -196,6 +213,7 @@
 		D593295E290009E100A1379F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D593298629016CEF00A1379F /* ImageTaskManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,7 +233,6 @@
 				D593292D28FFD4D300A1379F /* Home.storyboard */,
 				D593292B28FFD4D300A1379F /* HomeViewController.swift */,
 				D593296F29001A6700A1379F /* HomeViewModel.swift */,
-				D59329632900168200A1379F /* Articles.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -241,6 +258,10 @@
 			isa = PBXGroup;
 			children = (
 				D59329662900184D00A1379F /* Cell */,
+				D593298A2901787500A1379F /* BottomSheetView.swift */,
+				D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */,
+				D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */,
+				D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,9 +279,25 @@
 			isa = PBXGroup;
 			children = (
 				D593297229001C3600A1379F /* Color+Addition.swift */,
-				D59329782900297A00A1379F /* ThemePalette.swift */,
+				D59329782900297A00A1379F /* ThemePaletteForUIColor.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		D5932981290169AD00A1379F /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				D5932984290169CC00A1379F /* DetailsView.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		D5D2EC7A290282640094D575 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D59329632900168200A1379F /* Articles.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,18 +441,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D2EC8029029AA50094D575 /* DetailsBackgroundImage.swift in Sources */,
+				D593298729016CEF00A1379F /* ImageTaskManager.swift in Sources */,
 				D59329752900221900A1379F /* List+Deque.swift in Sources */,
 				D59329642900168200A1379F /* Articles.swift in Sources */,
 				D593297029001A6700A1379F /* HomeViewModel.swift in Sources */,
 				D593292C28FFD4D300A1379F /* HomeViewController.swift in Sources */,
 				D593296E290019FF00A1379F /* List+Register.swift in Sources */,
 				D593292828FFD4D300A1379F /* AppDelegate.swift in Sources */,
+				D5932989290175E000A1379F /* Article+Date.swift in Sources */,
+				D5932985290169CC00A1379F /* DetailsView.swift in Sources */,
+				D5D2EC7E29029A8A0094D575 /* DetailsContentView.swift in Sources */,
+				D593298B2901787500A1379F /* BottomSheetView.swift in Sources */,
 				D593296C290019B100A1379F /* View+Layout.swift in Sources */,
-				D59329792900297A00A1379F /* ThemePalette.swift in Sources */,
+				D59329792900297A00A1379F /* ThemePaletteForUIColor.swift in Sources */,
 				D593292A28FFD4D300A1379F /* SceneDelegate.swift in Sources */,
 				D593296A290018DE00A1379F /* NiblessTableViewCell.swift in Sources */,
 				D59329682900186800A1379F /* NewsCell.swift in Sources */,
 				D593297329001C3600A1379F /* Color+Addition.swift in Sources */,
+				D5D2EC77290281BD0094D575 /* ActivityIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,20 +19,6 @@ fileprivate struct Constants {
 public class NewsCell: NiblessTableViewCell {
     private let const = Constants()
     
-    private lazy var inDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        return dateFormatter
-    }()
-    
-    private lazy var outDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        
-        return dateFormatter
-    }()
-    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .theme.primaryBackground
@@ -113,20 +99,10 @@ public class NewsCell: NiblessTableViewCell {
     }()
     
     public func configure(with article: Article) {
-        articleImageView.url = URL(string: article.urlToImage ?? "")
+        articleImageView.url = article.urlToImage
         titleLabel.text = article.title
         authorLabel.text = article.author
-        dateLabel.text = format(date: article.publishedAt)
-    }
-    
-    private func format(date string: String?) -> String {
-        let date = inDateFormatter.date(from: string ?? "")
-        
-        if let date {
-            return outDateFormatter.string(from: date)
-        } else {
-            return ""
-        }
+        dateLabel.text = article.readableDate
     }
 }
 
