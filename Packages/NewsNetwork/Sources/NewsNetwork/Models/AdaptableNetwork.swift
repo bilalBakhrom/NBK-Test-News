@@ -11,7 +11,12 @@ import Combine
 public class AdaptableNetwork<SomeRouter: RequestConvertible>: Network {
     public typealias Router = SomeRouter
     public typealias ServiceCompletion<C: Codable> = (Result<C, NError>) -> Void
+    public var session: URLSession
     private var subscriptions: Set<AnyCancellable> = []
+    
+    public init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
     
     internal func bind<T: Codable>(_ type: T.Type, from router: Router, completion: @escaping ServiceCompletion<T>) {
         request(T.self, from: router)

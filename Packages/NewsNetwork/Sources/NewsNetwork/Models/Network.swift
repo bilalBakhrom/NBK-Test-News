@@ -10,6 +10,7 @@ import Combine
 
 public protocol Network {
     associatedtype Router: RequestConvertible
+    var session: URLSession { get set }
 }
 
 extension Network {
@@ -18,8 +19,7 @@ extension Network {
             fatalError()
         }
         
-        return URLSession.shared
-            .dataTaskPublisher(for: request)
+        return session.dataTaskPublisher(for: request)
             .tryMap  { (data: Data, response: URLResponse) in
                 #if DEBUG
                 NLog.log(request: request, response: response, data: data)
@@ -32,7 +32,7 @@ extension Network {
                 if let error = error as? NError {
                     return error
                 } else {
-                    return NError.technicIssue
+                    return NError.internalError(error: error)
                 }
             }
             .eraseToAnyPublisher()

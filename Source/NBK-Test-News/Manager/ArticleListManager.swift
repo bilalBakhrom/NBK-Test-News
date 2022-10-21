@@ -1,5 +1,5 @@
 //
-//  Articles.swift
+//  ArticleListManager.swift
 //  NBK-Test-News
 //
 //  Created by Bilal Bakhrom on 19/10/2022.
@@ -8,19 +8,23 @@
 import Foundation
 import NewsNetwork
 
-public class Articles: ObservableObject {
+public class ArticleListManager: ObservableObject {
     @Published public var list: [Article] = []
     @Published public var isLoading: Bool = false
     @Published public var error: NError?
-    private let service = NewsService()
+    private let service: NewsService
     private var currentPage: Int = 0
     private var totalPages: Int = 1
+    
+    public init(service: NewsService = NewsService()) {
+        self.service = service
+    }
     
     public var hasNextPage: Bool {
         currentPage < totalPages
     }
     
-    public func load() {
+    public func load(completion: ((_ error: NError?) -> Void)? = nil) {
         guard hasNextPage else { return }
         
         currentPage += 1
@@ -28,6 +32,7 @@ public class Articles: ObservableObject {
         
         service.fetchTopArticles(model: makeRMTopArticle(page: currentPage)) { [weak self] result in
             guard let self = self else { return }
+            self.isLoading = false
             
             switch result {
             case .success(let content):
@@ -38,12 +43,12 @@ public class Articles: ObservableObject {
                 } else {
                     self.list.append(contentsOf: content.articles)
                 }
+                completion?(nil)
                 
             case .failure(let error):
                 self.error = error
+                completion?(error)
             }
-            
-            self.isLoading = false
         }
     }
     

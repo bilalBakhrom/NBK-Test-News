@@ -21,7 +21,7 @@ public class ImageTaskManager {
             let data = try await loadData()
             return .success(data)
         } catch  {
-            return .failure(.technicIssue)
+            return .failure(.unknownError(reason: "Couldn't load data"))
         }
     }
     

@@ -9,8 +9,6 @@ import Foundation
 import Combine
 
 public final class NewsService: AdaptableNetwork<NewsRouter> {
-    public override init() {}
-    
     public func fetchTopArticles(model: RMTopArticle, completion: @escaping ServiceCompletion<ArticleListHolder>) {
         bind(ArticleListHolder.self, from: .topArticles(model: model), completion: completion)
     }
