@@ -27,13 +27,26 @@ public class HomeViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Today"        
         view.backgroundColor = .systemGroupedBackground
+        setupNavigationTitle()
+        bind()
+        viewModel.fetch()
+    }
+    
+    public func setupNavigationTitle() {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = .theme.accent
+        label.text = "Today's News"
         
+        navigationItem.titleView = label
+    }
+    
+    private func bind() {
         viewModel.observeData { [weak self] didFail in
             guard let self else { return }
             didFail ? self.showError() : self.tableView.reloadData()
-        } didUpdateItemBlock: { [weak self] start, end in
+        } didUpdateItemsBlock: { [weak self] start, end in
             guard let self else { return }
             let rows = (start...end).map { IndexPath(row: $0, section: 0) }
             self.tableView.insertRows(at: rows, with: .bottom)
@@ -43,8 +56,6 @@ public class HomeViewController: UIViewController {
             guard let self else { return }
             isLoading ? self.loader.startAnimating() : self.loader.stopAnimating()
         }
-        
-        viewModel.fetch()
     }
     
     private func showError() {

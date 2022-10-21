@@ -92,7 +92,7 @@ public class NewsCell: NiblessTableViewCell {
     private lazy var vStackInfo: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = const.spacing / 2
+        view.spacing = const.spacing / 3
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

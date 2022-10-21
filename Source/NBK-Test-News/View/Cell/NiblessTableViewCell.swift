@@ -12,6 +12,7 @@ public class NiblessTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .clear
+        selectionStyle = .none
         setupSubviews()
     }
     

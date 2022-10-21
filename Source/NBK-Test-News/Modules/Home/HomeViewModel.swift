@@ -23,7 +23,7 @@ public final class HomeViewModel {
         articles.loadMore()
     }
     
-    public func observeData(using block: @escaping (_ didFail: Bool) -> Void, didUpdateItemBlock: ((_ start: Int, _ end: Int) -> Void)? = nil) {
+    public func observeData(using block: @escaping (_ didFail: Bool) -> Void, didUpdateItemsBlock: ((_ start: Int, _ end: Int) -> Void)? = nil) {
         articles
             .$list
             .sink { [weak self] list in
@@ -36,7 +36,7 @@ public final class HomeViewModel {
                 if self.list.isEmpty {
                     block(false)
                 } else {
-                    didUpdateItemBlock?(start, end)
+                    didUpdateItemsBlock?(start, end)
                 }
             }
             .store(in: &subscriptions)
