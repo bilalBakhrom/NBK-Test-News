@@ -73,7 +73,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.configure(with: viewModel.list[indexPath.row])
         
         if indexPath.row == viewModel.list.count - 1 {
-            viewModel.loadMore()
+            viewModel.fetch()
         }
         
         return cell

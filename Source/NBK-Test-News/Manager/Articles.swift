@@ -20,28 +20,9 @@ public class Articles: ObservableObject {
         currentPage < totalPages
     }
     
-    public func fetchFirstPage() {
-        isLoading = true
+    public func load() {
+        guard hasNextPage else { return }
         
-        service.fetchTopArticles(model: makeRMTopArticle(page: 1)) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let content):
-                self.totalPages = content.totalResults / 20
-                self.currentPage += 1
-                self.list = content.articles
-                
-            case .failure(let error):
-                self.error = error
-            }
-            
-            self.isLoading = false
-        }
-    }
-    
-    public func loadMore() {
-        guard hasNextPage else { return }        
         currentPage += 1
         isLoading = true
         
@@ -51,8 +32,12 @@ public class Articles: ObservableObject {
             switch result {
             case .success(let content):
                 self.totalPages = content.totalResults / 20
-                self.currentPage += 1
-                self.list.append(contentsOf: content.articles) 
+                
+                if self.currentPage == 1 {
+                    self.list = content.articles
+                } else {
+                    self.list.append(contentsOf: content.articles)
+                }
                 
             case .failure(let error):
                 self.error = error

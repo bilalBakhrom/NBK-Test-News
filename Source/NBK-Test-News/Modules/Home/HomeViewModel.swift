@@ -16,11 +16,7 @@ public final class HomeViewModel {
     private var subscriptions: Set<AnyCancellable> = []
             
     public func fetch() {
-        articles.fetchFirstPage()
-    }
-    
-    public func loadMore() {
-        articles.loadMore()
+        articles.load()
     }
     
     public func observeData(using block: @escaping (_ didFail: Bool) -> Void, didUpdateItemsBlock: ((_ start: Int, _ end: Int) -> Void)? = nil) {
