@@ -23,5 +23,6 @@ public struct DetailsBackgroundImage: View {
                 ActivityIndicator(isAnimating: resource.loading)
             }
         }
+        .background(Color.theme.primaryBackground)
     }
 }

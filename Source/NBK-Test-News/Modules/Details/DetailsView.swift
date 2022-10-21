@@ -16,24 +16,27 @@ public struct DetailsView: View {
     
     public var body: some View {
         GeometryReader { geometry in
-            BottomSheetView(
-                isOpen: $isOpen,
-                maxHeight: geometry.size.height,
-                content: {
-                    ScrollView {
-                        DetailsContentView(article: $article)
-                    }
-                    .background(Color.theme.primaryBackground)
-                    .disabled(!isOpen)
-                }
-            )
-            .background(
+            ZStack {
                 DetailsBackgroundImage(resource: $resource)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxHeight: .infinity)
+                    .frame(width: geometry.size.width)
                     .clipped()
-                    .edgesIgnoringSafeArea(.all)
-            )
-            .frame(width: geometry.size.width)
+                    .edgesIgnoringSafeArea(.vertical)
+                
+                BottomSheetView(
+                    isOpen: $isOpen,
+                    maxHeight: geometry.size.height,
+                    content: {
+                        ScrollView {
+                            DetailsContentView(article: $article)
+                        }
+                        .background(Color.theme.primaryBackground)
+                        .disabled(!isOpen)
+                    }
+                )
+                .frame(width: geometry.size.width)
+            }
+            .background(Color.theme.primaryBackground)
             .onAppear {
                 loadImage()
             }
