@@ -10,19 +10,17 @@ import XCTest
 @testable import NewsNetwork
 
 final class ArticleListManagerTests: XCTestCase {
-    private var mockSession: URLSession!
     private var sut: ArticleListManager!
     
     override func setUp() {
         super.setUp()
         
-        mockSession = URLSession(mockResponder: ArticleListHolder.MockDataURLResponder.self)
+        let mockSession = URLSession(mockResponder: ArticleListHolder.MockDataURLResponder.self)
         sut = ArticleListManager(service: NewsService(session: mockSession))
     }
     
     override func tearDown() {
         super.tearDown()
-        mockSession = nil
         sut = nil
     }
     

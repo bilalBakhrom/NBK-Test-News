@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import NewsNetwork
 
 public class HomeViewController: UIViewController {
     public let viewModel = HomeViewModel()
@@ -43,22 +44,26 @@ public class HomeViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.observeData { [weak self] didFail in
+        viewModel.observeList { [weak self] _, start, end in
             guard let self else { return }
-            didFail ? self.showError() : self.tableView.reloadData()
-        } didUpdateItemsBlock: { [weak self] start, end in
-            guard let self else { return }
+            
             let rows = (start...end).map { IndexPath(row: $0, section: 0) }
             self.tableView.insertRows(at: rows, with: .bottom)
         }
         
-        viewModel.observeLoader { [weak self] isLoading in
+        viewModel.observeError { [weak self] error in
+            guard let self else { return }
+            
+            self.showError(error)
+        }
+        
+        viewModel.observeLoaderState { [weak self] isLoading in
             guard let self else { return }
             isLoading ? self.loader.startAnimating() : self.loader.stopAnimating()
         }
     }
     
-    private func showError() {
+    private func showError(_ error: NError) {
         print("ERROR")
     }
 }
@@ -86,7 +91,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsView = DetailsView(article: viewModel.$articles.list[indexPath.row])
+        let detailsView = DetailsView(article: viewModel.$listManager.list[indexPath.row])
         let hostingController = UIHostingController(rootView: detailsView)
         navigationController?.pushViewController(hostingController, animated: true)
     }
