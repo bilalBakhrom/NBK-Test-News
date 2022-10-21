@@ -10,7 +10,7 @@ import SwiftUI
 import NewsNetwork
 
 public class HomeViewController: UIViewController {
-    public let viewModel = HomeViewModel()
+    public var viewModel: HomeViewModel!
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -24,6 +24,15 @@ public class HomeViewController: UIViewController {
     }
 
     @IBOutlet weak var loader: UIActivityIndicatorView!
+        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        set(viewModel: HomeViewModel())
+    }
+    
+    public func set(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()

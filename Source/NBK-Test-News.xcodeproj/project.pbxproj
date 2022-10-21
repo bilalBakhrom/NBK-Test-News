@@ -40,6 +40,8 @@
 		D5D2EC852902B5E80094D575 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC842902B5E80094D575 /* MockURLProtocol.swift */; };
 		D5D2EC882902C1CD0094D575 /* ArticleListHolder+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC872902C1CD0094D575 /* ArticleListHolder+Responder.swift */; };
 		D5D2EC8A2902C7930094D575 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */; };
+		D5D2EC8C29031BFB0094D575 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC8B29031BFB0094D575 /* HomeViewControllerTests.swift */; };
+		D5D2EC8F29031C4B0094D575 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC8E29031C4B0094D575 /* NiblessViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		D5D2EC842902B5E80094D575 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		D5D2EC872902C1CD0094D575 /* ArticleListHolder+Responder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArticleListHolder+Responder.swift"; sourceTree = "<group>"; };
 		D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		D5D2EC8B29031BFB0094D575 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
+		D5D2EC8E29031C4B0094D575 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 				D5D2EC832902B5D70094D575 /* Mocks */,
 				D5D2EC812902B1100094D575 /* ArticleListManagerTests.swift */,
 				D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */,
+				D5D2EC8B29031BFB0094D575 /* HomeViewControllerTests.swift */,
 			);
 			path = "NBK-Test-NewsTests";
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 		D59329652900184700A1379F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D5D2EC8D29031C400094D575 /* Base */,
 				D59329662900184D00A1379F /* Cell */,
 				D593298A2901787500A1379F /* BottomSheetView.swift */,
 				D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */,
@@ -278,7 +284,6 @@
 		D59329662900184D00A1379F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D5932969290018DE00A1379F /* NiblessTableViewCell.swift */,
 				D59329672900186800A1379F /* NewsCell.swift */,
 			);
 			path = Cell;
@@ -323,6 +328,15 @@
 				D5D2EC872902C1CD0094D575 /* ArticleListHolder+Responder.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D5D2EC8D29031C400094D575 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D5D2EC8E29031C4B0094D575 /* NiblessViewController.swift */,
+				D5932969290018DE00A1379F /* NiblessTableViewCell.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,6 +497,7 @@
 				D593292A28FFD4D300A1379F /* SceneDelegate.swift in Sources */,
 				D593296A290018DE00A1379F /* NiblessTableViewCell.swift in Sources */,
 				D59329682900186800A1379F /* NewsCell.swift in Sources */,
+				D5D2EC8F29031C4B0094D575 /* NiblessViewController.swift in Sources */,
 				D593297329001C3600A1379F /* Color+Addition.swift in Sources */,
 				D5D2EC77290281BD0094D575 /* ActivityIndicator.swift in Sources */,
 			);
@@ -492,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D2EC8C29031BFB0094D575 /* HomeViewControllerTests.swift in Sources */,
 				D5D2EC882902C1CD0094D575 /* ArticleListHolder+Responder.swift in Sources */,
 				D5D2EC852902B5E80094D575 /* MockURLProtocol.swift in Sources */,
 				D5D2EC822902B1100094D575 /* ArticleListManagerTests.swift in Sources */,
