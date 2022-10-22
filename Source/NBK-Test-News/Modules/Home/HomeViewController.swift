@@ -72,10 +72,6 @@ public class HomeViewController: UIViewController {
         }
     }
     
-    private func showError(_ error: NError) {
-        print("ERROR")
-    }
-    
     // MARK: - Actions
     @objc private func handleFilterButtonClick() {
         let filterVM = FilterViewModel(
