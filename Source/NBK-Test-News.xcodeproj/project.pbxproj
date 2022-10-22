@@ -42,6 +42,7 @@
 		D5D2EC8A2902C7930094D575 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */; };
 		D5D2EC8C29031BFB0094D575 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC8B29031BFB0094D575 /* HomeViewControllerTests.swift */; };
 		D5D2EC8F29031C4B0094D575 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC8E29031C4B0094D575 /* NiblessViewController.swift */; };
+		D5D2EC912903E7AB0094D575 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC902903E7AB0094D575 /* DetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		D5D2EC892902C7930094D575 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		D5D2EC8B29031BFB0094D575 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		D5D2EC8E29031C4B0094D575 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
+		D5D2EC902903E7AB0094D575 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				D5932984290169CC00A1379F /* DetailsView.swift */,
+				D5D2EC902903E7AB0094D575 /* DetailsViewModel.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				D5932989290175E000A1379F /* Article+Date.swift in Sources */,
 				D5932985290169CC00A1379F /* DetailsView.swift in Sources */,
 				D5D2EC7E29029A8A0094D575 /* DetailsContentView.swift in Sources */,
+				D5D2EC912903E7AB0094D575 /* DetailsViewModel.swift in Sources */,
 				D593298B2901787500A1379F /* BottomSheetView.swift in Sources */,
 				D593296C290019B100A1379F /* View+Layout.swift in Sources */,
 				D59329792900297A00A1379F /* ThemePaletteForUIColor.swift in Sources */,

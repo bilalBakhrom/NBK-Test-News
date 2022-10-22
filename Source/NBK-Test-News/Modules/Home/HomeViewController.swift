@@ -39,6 +39,7 @@ public class HomeViewController: UIViewController {
         
         view.backgroundColor = .systemGroupedBackground
         setupNavigationTitle()
+        addFilterButton()
         bind()
         viewModel.fetch()
     }
@@ -50,6 +51,16 @@ public class HomeViewController: UIViewController {
         label.text = "Today's News"
         
         navigationItem.titleView = label
+    }
+    
+    public func addFilterButton() {
+        let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
+        let filterButton = UIBarButtonItem(
+            image: image,
+            style: .done,
+            target: self,
+            action: #selector(handleFilterButtonClick))
+        navigationItem.rightBarButtonItem = filterButton
     }
     
     private func bind() {
@@ -74,6 +85,11 @@ public class HomeViewController: UIViewController {
     
     private func showError(_ error: NError) {
         print("ERROR")
+    }
+    
+    // MARK: - Actions
+    @objc private func handleFilterButtonClick() {
+        
     }
 }
 
@@ -100,7 +116,8 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsView = DetailsView(article: viewModel.$listManager.list[indexPath.row])
+        let article = viewModel.list[indexPath.row]
+        let detailsView = DetailsView(viewModel: DetailsViewModel(article: article))
         let hostingController = UIHostingController(rootView: detailsView)
         navigationController?.pushViewController(hostingController, animated: true)
     }

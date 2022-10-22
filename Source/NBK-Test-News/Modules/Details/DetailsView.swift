@@ -10,47 +10,34 @@ import NewsNetwork
 import NukeUI
 
 public struct DetailsView: View {
-    @Binding public var article: Article
-    @State private var resource: NResource<UIImage> = .loading
-    @State private var isOpen: Bool = false
+    @ObservedObject public var viewModel: DetailsViewModel
     
     public var body: some View {
         GeometryReader { geometry in
             ZStack {
-                DetailsBackgroundImage(resource: $resource)
+                DetailsBackgroundImage(resource: $viewModel.resource)
                     .frame(maxHeight: .infinity)
                     .frame(width: geometry.size.width)
                     .clipped()
                     .edgesIgnoringSafeArea(.vertical)
                 
                 BottomSheetView(
-                    isOpen: $isOpen,
+                    isOpen: $viewModel.isBottomSheetOpen,
                     maxHeight: geometry.size.height,
                     content: {
                         ScrollView {
-                            DetailsContentView(article: $article)
+                            DetailsContentView(article: $viewModel.article)
                         }
                         .background(Color.theme.primaryBackground)
-                        .disabled(!isOpen)
+                        .disabled(!viewModel.isBottomSheetOpen)
                     }
                 )
                 .frame(width: geometry.size.width)
             }
             .background(Color.theme.primaryBackground)
             .onAppear {
-                loadImage()
+                Task { await viewModel.loadImage() }
             }
-        }
-    }
-    
-    private func loadImage() {
-        guard let urlString = article.pathToImage else {
-            return
-        }
-        
-        Task {
-            let manager = ImageTaskManager(urlString: urlString)
-            resource = await manager.resource()
         }
     }
 }
@@ -93,6 +80,6 @@ struct DetailsView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        DetailsView(article: $article)
+        DetailsView(viewModel: DetailsViewModel(article: article))
     }
 }
