@@ -10,9 +10,11 @@ import Combine
 import NewsNetwork
 import SwiftUI
 
+public typealias AddUp = (start: Int, end: Int)
+
 public final class HomeViewModel {
     @ObservedObject public var listManager: ArticleListManager
-    public var list: [Article] = []    
+    public var articles: [Article] = []    
     private var subscriptions: Set<AnyCancellable> = []
     
     public init(listManager: ArticleListManager = ArticleListManager()) {
@@ -20,7 +22,7 @@ public final class HomeViewModel {
     }
     
     public func reset() {
-        list = []
+        articles = []
         listManager.reset()
     }
             
@@ -28,21 +30,20 @@ public final class HomeViewModel {
         listManager.load()
     }
     
-    public func observeList(using block: @escaping (_ items: [Article], _ start: Int, _ end: Int) -> Void) {
+    public func addArticlesObserver(using block: @escaping (_ items: [Article], _ meta: AddUp) -> Void) {
         listManager
             .$list
-            .sink { [weak self] newList in
-                guard let self, !newList.isEmpty else { return }
+            .sink { [weak self] list in
+                guard let self, list.hasElements else { return }
                 
-                let start = self.list.count
-                let end = newList.count - 1
-                self.list = newList
-                block(newList, start, end)
+                let meta: AddUp = (self.articles.count, list.count - 1)
+                self.articles = list
+                block(list, meta)
             }
             .store(in: &subscriptions)
     }
     
-    public func observeError(using block: @escaping (_ error: NError) -> Void) {
+    public func addErrorObserver(using block: @escaping (_ error: NError) -> Void) {
         listManager
             .$error
             .sink { error in
@@ -52,7 +53,7 @@ public final class HomeViewModel {
             .store(in: &subscriptions)
     }
     
-    public func observeLoaderState(using block: @escaping (_ isLoading: Bool) -> Void) {
+    public func addLoaderObserver(using block: @escaping (_ isLoading: Bool) -> Void) {
         listManager
             .$isLoading
             .sink { isLoading in

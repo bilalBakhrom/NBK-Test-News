@@ -38,46 +38,35 @@ public class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemGroupedBackground
-        setupNavigationTitle()
-        addFilterButton()
+        setupNavigationBar()
         bind()
         viewModel.fetch()
     }
     
-    public func setupNavigationTitle() {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = .theme.accent
-        label.text = "Today's News"
+    public func setupNavigationBar() {
+        setNavTitle("News")
         
-        navigationItem.titleView = label
-    }
-    
-    public func addFilterButton() {
+        // Add Filter Button
         let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
-        let filterButton = UIBarButtonItem(
-            image: image,
-            style: .done,
-            target: self,
-            action: #selector(handleFilterButtonClick))
+        let filterButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handleFilterButtonClick))
         navigationItem.rightBarButtonItem = filterButton
     }
     
     private func bind() {
-        viewModel.observeList { [weak self] _, start, end in
+        viewModel.addArticlesObserver { [weak self] _, meta in
             guard let self else { return }
             
-            let rows = (start...end).map { IndexPath(row: $0, section: 0) }
+            let rows = (meta.start...meta.end).map { IndexPath(row: $0, section: 0) }
             self.tableView.insertRows(at: rows, with: .bottom)
         }
         
-        viewModel.observeError { [weak self] error in
+        viewModel.addErrorObserver { [weak self] error in
             guard let self else { return }
             
             self.showError(error)
         }
         
-        viewModel.observeLoaderState { [weak self] isLoading in
+        viewModel.addLoaderObserver { [weak self] isLoading in
             guard let self else { return }
             isLoading ? self.loader.startAnimating() : self.loader.stopAnimating()
         }
@@ -109,14 +98,14 @@ public class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.list.count
+        return viewModel.articles.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(NewsCell.self, for: indexPath)
-        cell.configure(with: viewModel.list[indexPath.row])
+        cell.configure(with: viewModel.articles[indexPath.row])
         
-        if indexPath.row == viewModel.list.count - 1 {
+        if indexPath.row == viewModel.articles.count - 1 {
             viewModel.fetch()
         }
         
@@ -130,7 +119,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = viewModel.list[indexPath.row]
+        let article = viewModel.articles[indexPath.row]
         let detailsView = DetailsView(viewModel: DetailsViewModel(article: article))
         let hostingController = UIHostingController(rootView: detailsView)
         navigationController?.pushViewController(hostingController, animated: true)
