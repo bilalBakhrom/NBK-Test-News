@@ -13,16 +13,32 @@ public struct DetailsBackgroundImage: View {
     @Binding public var resource: NResource<UIImage>
     
     public var body: some View {
-        ZStack {
-            resource.hasResource { image in
-                Image(image)
-                    .scaledToFill()
+        GeometryReader { geometry in
+            ZStack {
+                resource.hasResource { image in
+                    ZStack {
+                        Image(image)
+                            .scaledToFill()
+                        
+                        VStack {
+                            Rectangle()
+                                .fill(LinearGradient(
+                                    colors: [Color.black.opacity(0.5), Color.black.opacity(0.0)],
+                                    startPoint: .top,
+                                    endPoint: .bottom)
+                                )
+                                .frame(height: geometry.size.height * 0.4)
+                            
+                            Spacer()
+                        }
+                    }
+                }
+                
+                resource.isLoading {
+                    ActivityIndicator(isAnimating: resource.loading)
+                }
             }
-            
-            resource.isLoading {
-                ActivityIndicator(isAnimating: resource.loading)
-            }
+            .background(Color.theme.primaryBackground)
         }
-        .background(Color.theme.primaryBackground)
     }
 }

@@ -35,6 +35,9 @@
 		D5BBCF1E2904281E00769DAF /* ViewController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBCF1D2904281E00769DAF /* ViewController+Addition.swift */; };
 		D5BBCF21290429A500769DAF /* NewsNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D5BBCF20290429A500769DAF /* NewsNetwork */; };
 		D5BBCF2329042B8F00769DAF /* Array+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBCF2229042B8F00769DAF /* Array+Addition.swift */; };
+		D5BBCF252904479A00769DAF /* FilterListForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBCF242904479A00769DAF /* FilterListForm.swift */; };
+		D5BBCF272904493E00769DAF /* WideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBCF262904493E00769DAF /* WideButton.swift */; };
+		D5BBCF2929044B1400769DAF /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBCF2829044B1400769DAF /* CloseButton.swift */; };
 		D5D2EC77290281BD0094D575 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */; };
 		D5D2EC7E29029A8A0094D575 /* DetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */; };
 		D5D2EC8029029AA50094D575 /* DetailsBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */; };
@@ -98,6 +101,9 @@
 		D5BBCF1D2904281E00769DAF /* ViewController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Addition.swift"; sourceTree = "<group>"; };
 		D5BBCF1F2904299F00769DAF /* NewsNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NewsNetwork; path = ../Packages/NewsNetwork; sourceTree = "<group>"; };
 		D5BBCF2229042B8F00769DAF /* Array+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Addition.swift"; sourceTree = "<group>"; };
+		D5BBCF242904479A00769DAF /* FilterListForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListForm.swift; sourceTree = "<group>"; };
+		D5BBCF262904493E00769DAF /* WideButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideButton.swift; sourceTree = "<group>"; };
+		D5BBCF2829044B1400769DAF /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsContentView.swift; sourceTree = "<group>"; };
 		D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsBackgroundImage.swift; sourceTree = "<group>"; };
@@ -296,6 +302,9 @@
 				D5D2EC76290281BD0094D575 /* ActivityIndicator.swift */,
 				D5D2EC7D29029A8A0094D575 /* DetailsContentView.swift */,
 				D5D2EC7F29029AA40094D575 /* DetailsBackgroundImage.swift */,
+				D5BBCF242904479A00769DAF /* FilterListForm.swift */,
+				D5BBCF262904493E00769DAF /* WideButton.swift */,
+				D5BBCF2829044B1400769DAF /* CloseButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -509,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BBCF2929044B1400769DAF /* CloseButton.swift in Sources */,
 				D5D2EC962903E90A0094D575 /* FilterView.swift in Sources */,
 				D5D2EC8029029AA50094D575 /* DetailsBackgroundImage.swift in Sources */,
 				D593298729016CEF00A1379F /* ImageTaskManager.swift in Sources */,
@@ -526,6 +536,8 @@
 				D5D2EC912903E7AB0094D575 /* DetailsViewModel.swift in Sources */,
 				D593298B2901787500A1379F /* BottomSheetView.swift in Sources */,
 				D593296C290019B100A1379F /* View+Layout.swift in Sources */,
+				D5BBCF272904493E00769DAF /* WideButton.swift in Sources */,
+				D5BBCF252904479A00769DAF /* FilterListForm.swift in Sources */,
 				D5D2EC982903E9140094D575 /* FilterViewModel.swift in Sources */,
 				D59329792900297A00A1379F /* ThemePaletteForUIColor.swift in Sources */,
 				D593292A28FFD4D300A1379F /* SceneDelegate.swift in Sources */,

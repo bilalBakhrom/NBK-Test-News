@@ -17,6 +17,11 @@ public struct DetailsContentView: View {
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(Color.theme.primaryLabel)
             
+            Text(article.description ?? "")
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(Color.theme.primaryLabel)
+                .lineSpacing(2)
+            
             Text(article.content ?? "No content")
                 .font(.system(size: 16, weight: .regular))
                 .foregroundColor(Color.theme.primaryLabel)

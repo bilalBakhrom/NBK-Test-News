@@ -63,15 +63,15 @@ public class HomeViewController: UIViewController {
     }
     
     public func updateNavigationTitleWithAnimation(addedArticlesCount count: Int) {
-        let duration: Double = 1.2
+        let duration: Double = 1.5
         let endValue = viewModel.articles.count
         var startCount = viewModel.articles.count - count
         navigationBarTitleLabel.text = "News: \(startCount)"
                 
         DispatchQueue.global().async {
-            for _ in 0..<count {
+            for i in 0..<count {
                 startCount += 1
-                usleep(UInt32(duration / Double(endValue) * 1000000.0))
+                usleep(UInt32((duration + Double(i) / 10) / Double(endValue) * 1000000.0))
                 
                 DispatchQueue.main.async {
                     self.navigationBarTitleLabel.text = "News: \(startCount)"
@@ -147,6 +147,7 @@ extension HomeViewController: UITableViewDelegate {
         let article = viewModel.articles[indexPath.row]
         let detailsView = DetailsView(viewModel: DetailsViewModel(article: article))
         let hostingController = UIHostingController(rootView: detailsView)
+        navigationItem.title = article.title
         navigationController?.pushViewController(hostingController, animated: true)
     }
 }
