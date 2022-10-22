@@ -24,6 +24,16 @@ public class HomeViewController: UIViewController {
     }
 
     @IBOutlet weak var loader: UIActivityIndicatorView!
+    
+    private lazy var navigationBarTitleLabel: UILabel = {
+        let view = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 30)))
+        view.font = .systemFont(ofSize: 18, weight: .semibold)
+        view.textColor = .theme.accent
+        view.text = "News"
+        view.textAlignment = .center
+        
+        return view
+    }()
         
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -44,12 +54,30 @@ public class HomeViewController: UIViewController {
     }
     
     public func setupNavigationBar() {
-        setNavTitle("News")
+        navigationItem.titleView = navigationBarTitleLabel
         
         // Add Filter Button
         let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
         let filterButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handleFilterButtonClick))
         navigationItem.rightBarButtonItem = filterButton
+    }
+    
+    public func updateNavigationTitleWithAnimation(addedArticlesCount count: Int) {
+        let duration: Double = 1.2
+        let endValue = viewModel.articles.count
+        var startCount = viewModel.articles.count - count
+        navigationBarTitleLabel.text = "News: \(startCount)"
+                
+        DispatchQueue.global().async {
+            for _ in 0..<count {
+                startCount += 1
+                usleep(UInt32(duration / Double(endValue) * 1000000.0))
+                
+                DispatchQueue.main.async {
+                    self.navigationBarTitleLabel.text = "News: \(startCount)"
+                }
+            }
+        }
     }
     
     private func bind() {
@@ -58,6 +86,7 @@ public class HomeViewController: UIViewController {
             
             let rows = (meta.start...meta.end).map { IndexPath(row: $0, section: 0) }
             self.tableView.insertRows(at: rows, with: .bottom)
+            self.updateNavigationTitleWithAnimation(addedArticlesCount: meta.end - meta.start)
         }
         
         viewModel.addErrorObserver { [weak self] error in
