@@ -12,11 +12,16 @@ import SwiftUI
 
 public final class HomeViewModel {
     @ObservedObject public var listManager: ArticleListManager
-    public var list: [Article] = []
+    public var list: [Article] = []    
     private var subscriptions: Set<AnyCancellable> = []
     
     public init(listManager: ArticleListManager = ArticleListManager()) {
         self.listManager = listManager
+    }
+    
+    public func reset() {
+        list = []
+        listManager.reset()
     }
             
     public func fetch() {

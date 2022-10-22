@@ -10,6 +10,8 @@ import NewsNetwork
 
 public class ArticleListManager: ObservableObject {
     @Published public var list: [Article] = []
+    @Published public var country: Country = .allCountry
+    @Published public var category: NewsCategory = .general
     @Published public var isLoading: Bool = false
     @Published public var error: NError?
     private let service: NewsService
@@ -22,6 +24,12 @@ public class ArticleListManager: ObservableObject {
     
     public var hasNextPage: Bool {
         currentPage < totalPages
+    }
+    
+    public func reset() {
+        list = []
+        currentPage = 0
+        totalPages = 1
     }
     
     public func load(completion: ((_ error: NError?) -> Void)? = nil) {
@@ -53,6 +61,10 @@ public class ArticleListManager: ObservableObject {
     }
     
     private func makeRMTopArticle(page: Int) -> RMTopArticle {
-        RMTopArticle(page: page)
+        RMTopArticle(
+            country: country == .allCountry ? nil : country.code,
+            category: category.rawValue.lowercased(),
+            page: page
+        )
     }
 }

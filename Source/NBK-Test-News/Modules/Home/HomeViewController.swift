@@ -89,7 +89,21 @@ public class HomeViewController: UIViewController {
     
     // MARK: - Actions
     @objc private func handleFilterButtonClick() {
+        let filterVM = FilterViewModel(
+            country: self.viewModel.listManager.country,
+            category: self.viewModel.listManager.category)
         
+        filterVM.addObserver { [weak self] country, category in
+            self?.viewModel.listManager.country = country
+            self?.viewModel.listManager.category = category
+            self?.viewModel.reset()
+            self?.tableView.reloadData()
+            self?.viewModel.fetch()
+        }
+        
+        let view = FilterView(viewModel: filterVM)
+        let hostingController = UIHostingController(rootView: view)
+        present(hostingController, animated: true)
     }
 }
 
